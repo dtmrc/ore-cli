@@ -48,7 +48,7 @@ struct Args {
         long,
         value_name = "MICROLAMPORTS",
         help = "Number of microlamports to pay as priority fee per transaction",
-        default_value = "0"
+        default_value = "100000"
     )]
     priority_fee: u64,
 

@@ -18,7 +18,7 @@ impl Miner {
     pub async fn claim(&self, cluster: String, beneficiary: Option<String>, amount: Option<f64>) {
         let signer = self.signer();
         let pubkey = signer.pubkey();
-        let client = RpcClient::new_with_commitment(cluster, CommitmentConfig::confirmed());
+        let client = RpcClient::new_with_commitment(cluster, CommitmentConfig::processed());
         let beneficiary = match beneficiary {
             Some(beneficiary) => {
                 Pubkey::from_str(&beneficiary).expect("Failed to parse beneficiary address")
@@ -62,7 +62,7 @@ impl Miner {
         // Initialize client.
         let signer = self.signer();
         let client =
-            RpcClient::new_with_commitment(self.cluster.clone(), CommitmentConfig::confirmed());
+            RpcClient::new_with_commitment(self.cluster.clone(), CommitmentConfig::processed());
 
         // Build instructions.
         let token_account_pubkey = spl_associated_token_account::get_associated_token_address(
